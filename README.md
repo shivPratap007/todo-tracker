@@ -1,4 +1,4 @@
-[# Todo Tracker Application
+# Todo Tracker Application
 
 ## Overview
 
@@ -34,23 +34,3 @@ Ensure you have the following installed on your local machine:
 1. **Clone the repository**:
    ```sh
    git clone https://github.com/your-username/todo-tracker.git
-2. **Navigate to the project directory:**:
-   ```sh
-  cd todo-tracker
-3. **Install the dependencies**:
-   ```sh
-  npm install
-
-3. **Install the dependencies**:
-   ```sh
-  npm install
-### Running the Application
- **1. **Start the development server**:
-   ```sh
-npm run dev
- **2. **Open your browser and navigate to**:
-   ```sh
-  HTTP://localhost:5173
-
-
-](http://localhost:3000)
