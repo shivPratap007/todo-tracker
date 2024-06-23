@@ -1,36 +1,36 @@
-import { useState, useRef, useContext } from "react";
-import { ItemsContext } from "../context/ItemsContextProvider";
+import { useState, useRef } from 'react'; 
+import { useItemsStore } from '../stores/itemsStore'; 
 
 export default function AddForm() {
-  const{handleAddItems}=useContext(ItemsContext);
-  const [itemText, setItemText] = useState("");
+  const addItems = useItemsStore((state) => state.addItems); 
+
+  const [itemText, setItemText] = useState('');
   const inputRef = useRef();
+
   function handleSubmit(e) {
     e.preventDefault();
-    // validation
-    console.log(itemText.length);
-    if (itemText.trim().length===0) {
-      alert("Item cannot be empty");
+
+    if (itemText.trim().length === 0) {
+      alert('Item cannot be empty');
       inputRef.current.focus();
       return;
     }
-    
-    handleAddItems(itemText)
-    setItemText("");
+
+    addItems(itemText); // Call addItems action to add item
+    setItemText('');
   }
+
   return (
-    <form onSubmit={(e) => {handleSubmit(e)}}>
+    <form onSubmit={handleSubmit}>
       <h2>Add an item</h2>
       <input
         ref={inputRef}
         type="text"
         value={itemText}
-        onChange={(e) => {
-          setItemText(e.target.value);
-        }}
+        onChange={(e) => setItemText(e.target.value)}
         autoFocus={true}
       />
-      <button className="btn">Add to list</button>
+      <button className="btn" type="submit">Add to list</button>
     </form>
   );
 }

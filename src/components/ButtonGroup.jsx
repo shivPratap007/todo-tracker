@@ -1,34 +1,33 @@
-import { useContext } from "react";
 import Button from "./Button";
-import { ItemsContext } from "../context/ItemsContextProvider";
-// import { secondaryButton } from "../lib/constants";
+import { useItemsStore } from "../stores/itemsStore";
 
 export default function ButtonGroup() {
-  const {
-    handleMarkAllAsComplete,
-    handleMarkAllAsIncomplete,
-    handleRemoveAllItems,
-    handleResetToInitial,
-  } = useContext(ItemsContext);
+  const markAllAsComplete = useItemsStore((state) => state.markAllAsComplete);
+  const markAllAsIncomplete = useItemsStore(
+    (state) => state.markAllAsIncomplete
+  );
+  const removeAllItems = useItemsStore((state) => state.removeAllItems);
+  const resetToInitial = useItemsStore((state) => state.resetToInitial);
+
   const secondaryButton = [
     {
       text: "Mark all as complete",
-      onClickTask: handleMarkAllAsComplete,
+      onClickTask: markAllAsComplete,
     },
     {
       text: "Mark all as incomplete",
 
-      onClickTask: handleMarkAllAsIncomplete,
+      onClickTask: markAllAsIncomplete,
     },
     {
       text: "Reset to initial",
 
-      onClickTask: handleResetToInitial,
+      onClickTask: resetToInitial,
     },
     {
       text: "Remove all items",
 
-      onClickTask: handleRemoveAllItems,
+      onClickTask: removeAllItems,
     },
   ];
   return (
@@ -37,7 +36,7 @@ export default function ButtonGroup() {
         <Button
           type={"secondary"}
           key={data.text}
-          handleRemoveAllItems={handleRemoveAllItems}
+          handleRemoveAllItems={removeAllItems}
           onClickTask={data.onClickTask}
         >
           {data.text}
